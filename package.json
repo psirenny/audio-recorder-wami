@@ -1,0 +1,29 @@
+{
+  "author": "psirenny <djtorres0@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/psirenny/audio-recorder-wami/issues"
+  },
+  "dependencies": {
+    "lodash": "*"
+  },
+  "description": "Wami audio recorder plugin.",
+  "keywords": [
+    "audio",
+    "microphone",
+    "record",
+    "RTC",
+    "web"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "audio-recorder-wami",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/psirenny/audio-recorder-wami.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.0"
+}
