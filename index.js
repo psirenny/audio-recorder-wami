@@ -12,6 +12,9 @@ module.exports = function (options) {
         swfUrl: options.swfUrl
       });
     },
+    send: function (url, callback) {
+      callback(null, options.uploadUrl);
+    },
     start: function (callback) {
       var self = this;
 
@@ -27,7 +30,7 @@ module.exports = function (options) {
       return callback();
     },
     stop: function (callback) {
-      this.rec.callback = callback();
+      this.rec.callback = callback;
       Wami.stopRecording();
     }
   };
