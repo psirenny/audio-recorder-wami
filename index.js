@@ -13,7 +13,7 @@ module.exports = function (options) {
       });
     },
     send: function (url, callback) {
-      callback(null, options.uploadUrl);
+      callback(null, this.rec.url);
     },
     start: function (callback) {
       var self = this;
@@ -23,7 +23,8 @@ module.exports = function (options) {
       });
 
       var stop =  Wami.nameCallback(function (data) {
-        self.rec.callback(null, data[0].url);
+        self.rec.url = data[0].url;
+        self.rec.callback();
       });
 
       Wami.startRecording(options.uploadUrl, null, stop, error);
