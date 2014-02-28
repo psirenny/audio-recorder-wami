@@ -13,7 +13,7 @@ module.exports = function (options) {
       });
     },
     send: function (url, callback) {
-      callback(null, this.rec.url);
+      callback(null, this.rec);
     },
     start: function (callback) {
       var self = this;
