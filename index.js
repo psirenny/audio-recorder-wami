@@ -4,6 +4,11 @@ module.exports = function (options) {
       if (typeof navigator === 'undefined') return callback(false);
       return callback(!!navigator.mimeTypes['application/x-shockwave-flash']);
     },
+    config: function (opts, callback) {
+      if (opts.uploadUrl) options.uploadUrl = opts.uploadUrl;
+      callback();
+    },
+    name: 'wami',
     permission: function (callback) {
       this.rec = {};
       Wami.setup({
@@ -13,22 +18,18 @@ module.exports = function (options) {
       });
     },
     send: function (url, callback) {
-      callback(null, this.rec);
+      callback(null, this.rec.res);
     },
     start: function (callback) {
-      var self = this;
+      var self = this
+        , start = Wami.nameCallback(callback);
 
-      var error = Wami.nameCallback(function (err) {
-        self.rec.callback(err[0]);
-      });
-
-      var stop =  Wami.nameCallback(function (data) {
-        self.rec.url = data[0].url;
+      var stop =  Wami.nameCallback(function (res) {
+        self.rec.res = res[0];
         self.rec.callback();
       });
 
-      Wami.startRecording(options.uploadUrl, null, stop, error);
-      return callback();
+      Wami.startRecording(options.uploadUrl, start, stop);
     },
     stop: function (callback) {
       this.rec.callback = callback;
