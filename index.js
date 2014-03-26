@@ -4,6 +4,10 @@ module.exports = function (options) {
       if (typeof navigator === 'undefined') return callback(false);
       return callback(!!navigator.mimeTypes['application/x-shockwave-flash']);
     },
+    clear: function (callback) {
+      this.rec = {};
+      callback();
+    },
     config: function (opts, callback) {
       if (opts.uploadUrl) options.uploadUrl = opts.uploadUrl;
       callback();
