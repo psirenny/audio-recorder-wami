@@ -22,7 +22,7 @@ module.exports = function (options) {
       });
     },
     send: function (url, callback) {
-      callback(null, this.rec.res);
+      callback(this.rec.err, this.rec.res);
     },
     start: function (callback) {
       var self = this
@@ -33,7 +33,12 @@ module.exports = function (options) {
         self.rec.callback();
       });
 
-      Wami.startRecording(options.uploadUrl, start, stop);
+      var error = Wami.nameCallback(function (res) {
+        self.rec.err = res[0];
+        self.rec.callback();
+      });
+
+      Wami.startRecording(options.uploadUrl, start, stop, error);
     },
     stop: function (callback) {
       this.rec.callback = callback;
