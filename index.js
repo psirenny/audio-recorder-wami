@@ -14,6 +14,7 @@ module.exports = function (options) {
     },
     name: 'wami',
     permission: function (callback) {
+      window.Wami.startRecording = false;
       this.rec = {};
       Wami.setup({
         id: options.elementId,
